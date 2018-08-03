@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Data : MonoBehaviour {
 
+    public GameObject ArrayCircles;
+
     public UnityEngine.UI.Button button1;
     public UnityEngine.UI.Button button2;
     public UnityEngine.UI.Button button3;
@@ -29,22 +31,53 @@ public class Data : MonoBehaviour {
 
     public  void PressButton1()
     {
-        numberForButton1--;
-        if (numberForButton1 <= 0) Destroy(button1.gameObject);
-        else button1.gameObject.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = numberForButton1.ToString();
+        for(int i = 0; i < ArrayCircles.transform.childCount; i++)
+        {
+            ArrayCircles.transform.GetChild(i).GetComponent<CircleMove>().currentPoint = button1.transform.GetChild(1).transform.position;
+            ArrayCircles.transform.GetChild(i).GetComponent<CircleMove>().finishPoint = true;
+            ArrayCircles.transform.GetChild(i).GetComponent<CircleMove>().IDfinishPoint = 1;
+        }
     }
 
     public void PressButton2()
     {
-        numberForButton2--;
-        if (numberForButton2 <= 0) Destroy(button2.gameObject);
-        else button2.gameObject.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = numberForButton2.ToString();
+        for (int i = 0; i < ArrayCircles.transform.childCount; i++)
+        {
+            ArrayCircles.transform.GetChild(i).GetComponent<CircleMove>().currentPoint = button2.transform.GetChild(1).transform.position;
+            ArrayCircles.transform.GetChild(i).GetComponent<CircleMove>().finishPoint = true;
+            ArrayCircles.transform.GetChild(i).GetComponent<CircleMove>().IDfinishPoint = 2;
+        }
     }
 
     public void PressButton3()
     {
-        numberForButton3--;
-        if (numberForButton3 <= 0) Destroy(button3.gameObject);
-        else button3.gameObject.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = numberForButton3.ToString();
+        for (int i = 0; i < ArrayCircles.transform.childCount; i++)
+        {
+            ArrayCircles.transform.GetChild(i).GetComponent<CircleMove>().currentPoint = button3.transform.GetChild(1).transform.position;
+            ArrayCircles.transform.GetChild(i).GetComponent<CircleMove>().finishPoint = true;
+            ArrayCircles.transform.GetChild(i).GetComponent<CircleMove>().IDfinishPoint = 3;
+        }
+    }
+
+    public void MinusNumber(int IDButton)
+    {
+        switch (IDButton)
+        {
+            case 1:
+                numberForButton1--;
+                if (numberForButton1 <= 0) Destroy(button1.gameObject);
+                else button1.gameObject.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = numberForButton1.ToString();
+                break;
+            case 2:
+                numberForButton2--;
+                if (numberForButton2 <= 0) Destroy(button2.gameObject);
+                else button2.gameObject.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = numberForButton2.ToString();
+                break;
+            case 3:
+                numberForButton3--;
+                if (numberForButton3 <= 0) Destroy(button3.gameObject);
+                else button3.gameObject.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = numberForButton3.ToString();
+                break;
+        }
     }
 }
